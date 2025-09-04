@@ -4,14 +4,23 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portfolio</title>
+    <link rel="stylesheet" href="../Styles/style.css" />
   </head>
   <body>
-    <header>
-      <h1>BIBEK GT</h1>
-      <p>Computer Engineer | Web Developer</p>
-      <!-- Navigation -->
-      <nav>
-        <ul>
+    <header class="header">
+      <input type="checkbox" id="openSidebar" />
+      <label for="openSidebar" class="sidebarIconToggle">
+        <div class="spinner top"></div>
+        <div class="spinner middle"></div>
+        <div class="spinner bottom"></div>
+      </label>
+      <h1 class="head">BIBEK GT</h1>
+      <p class="bio">Computer Engineer | Web Developer</p>
+
+      <!-- Collapse Sidebar -->
+      <nav id="sidebar">
+        <ul class="dashboard">
+          <li><a href="#home">Home</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#education">Education</a></li>
           <li><a href="#skills">Skills</a></li>
@@ -21,7 +30,7 @@
       </nav>
     </header>
     <hr />
-    <main>
+    <main class="main">
       <div class="container">
         <!-- About section -->
         <section id="about">
@@ -95,7 +104,7 @@
       </div>
     </main>
     <hr />
-    <footer>
+    <footer class="footer">
       <h2>For More</h2>
       <p>Email: <a href="mailto:bibekgt49@gmail.com">bibekgt49@gmail.com</a></p>
       <p>Contact No: <a href="tel:98XXXXXXXX">98XXXXXXXX</a></p>
