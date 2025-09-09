@@ -2,7 +2,7 @@
   box-sizing: border-box;
 }
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   background: #fff;
   margin: 0;
   padding: 0;
@@ -42,7 +42,7 @@ input#openSidebar {
   margin-top: 128px;
   background: #f5f6fa;
   transform: translateX(-250px);
-  transition:transform 250ms ease-in-out;
+  transition: transform 250ms ease-in-out;
 }
 #openSidebar:checked ~ #sidebar {
   transform: translateX(0px);
@@ -60,9 +60,14 @@ input#openSidebar {
 .dashboard li a {
   color: #000;
   display: block;
+  font-weight: bold;
   text-decoration: none;
   text-transform: uppercase;
   padding: 20px;
+}
+.dashboard li a:hover {
+  background: #16d8b2;
+  color: #fff;
 }
 .sidebarIconToggle {
   width: 22px;
@@ -74,25 +79,25 @@ input#openSidebar {
   cursor: pointer;
 }
 
-.spinner{
-    height:4px;
-    background: #fff;
-    transition: all 0.3s;
+.spinner {
+  height: 4px;
+  background: #fff;
+  transition: all 0.3s;
 }
 
 .spinner.middle,
-.spinner.bottom{
-    margin-top:3px;
+.spinner.bottom {
+  margin-top: 3px;
 }
 
 #openSidebar:checked ~ .sidebarIconToggle > .spinner.middle {
   opacity: 0;
 }
-#openSidebar:checked ~ .sidebarIconToggle > .spinner.top{
-    transform:rotate(135deg);
-    margin-top:8px
+#openSidebar:checked ~ .sidebarIconToggle > .spinner.top {
+  transform: rotate(135deg);
+  margin-top: 8px;
 }
-#openSidebar:checked ~ .sidebarIconToggle > .spinner.bottom{
-    transform: rotate(-135deg);
-    margin-top: -10px;
+#openSidebar:checked ~ .sidebarIconToggle > .spinner.bottom {
+  transform: rotate(-135deg);
+  margin-top: -10px;
 }
