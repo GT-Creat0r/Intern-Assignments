@@ -1,0 +1,121 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background: rgb(235, 237, 236);
+  font-family: arial;
+}
+h1 {
+  text-align: center;
+  padding:12px;
+}
+.container {
+  width: 1100px;
+  height: 200px;
+  background-color: #fff;
+  margin: 0 auto;
+}
+.modal-container .modal-btn {
+  display: block;
+  color: #fff;
+  background: #e74c3c;
+  width: 150px;
+  height: 50px;
+  font-size: 22px;
+  line-height: 50px;
+  text-align: center;
+  border-radius: 20px;
+  margin:auto;
+  cursor: pointer;
+  box-shadow: 0 5px 5px -5px #333;
+  transition: background 0.3s ease-in;
+}
+.modal-container .modal-btn:hover {
+  background-color: #c0392b;
+}
+#modal-toggle {
+  display: none;
+}
+
+.modal-container .modal-backdrop,
+.modal-container .modal-content {
+  width: 0;
+  height: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease-in;
+}
+
+.modal-container #modal-toggle:checked ~ .modal-backdrop {
+  background-color: rgb(0, 0, 0, 0.6);
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.2s ease-in;
+}
+
+.modal-container #modal-toggle:checked ~ .modal-content {
+  background-color: #fff;
+  width: 400px;
+  height: 224px;
+  padding: 12px 32px;
+  border-radius: 4px;
+  position: fixed;
+  top: 12%;
+  left: calc(50% - 200px);
+  z-index: 1000;
+  cursor: auto;
+  visibility: visible;
+  opacity: 1;
+  box-shadow: 0 3px 7px rgb(0, 0, 0, 0.6);
+}
+
+.modal-container .modal-content h2 {
+  text-align: center;
+  border-bottom: 2px solid #000;
+  padding-bottom: 8px;
+}
+.modal-content .modal-close {
+  color: #333;
+  background: #fff;
+  width: 25px;
+  height: 25px;
+  font-size: 27px;
+  text-align: center;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  cursor: pointer;
+}
+.modal-content .modal-close:hover {
+  color: #db4232;
+}
+
+.modal-content .modal-content-btn {
+  color: #fff;
+  background-color: #c7311a;
+  width: 60px;
+  height: 32px;
+  font-size: px;
+  text-align: center;
+  cursor: pointer;
+  padding-top: 8px;
+  position: absolute;
+  bottom: 20px;
+  right: 30px;
+  border-radius: 4px;
+}
+.modal-content .modal-content-btn:hover {
+  background-color: #db4232;
+}
+p {
+  padding-top: 20px;
+  text-align: center;
+}
