@@ -1,78 +1,111 @@
 let data = JSON.parse(localStorage.getItem("object")) || [];
+let deleteId = null;
 
 const readAll = () => {
   let tableData = document.querySelector(".data-table");
   let elements = "";
   data.map((record) => {
     elements += `<tr>
-        <td>${record.name}</td>
-        <td>${record.email}</td>
-        <td>
+        <td data-label="Name">${record.name}</td>
+        <td data-label="Email">${record.email}</td>
+        <td data-label="Phone">${record.phone}</td>
+        <td data-label="Action">
             <button class="edit" onclick="edit(${record.id})">Edit</button>
-            <button class="delete" onclick="remove(${record.id})">Delete</button>
+            <button class="delete" onclick="openModal(${record.id})">Delete</button>
         </td>
         </tr>`;
   });
   tableData.innerHTML = elements;
 };
-// Add option
-const add = () => {
-  document.querySelector(".create-form").style.display = "block";
+// show option
+const showForm = () => {
+  document.querySelector(".crud-form").style.display = "block";
   document.querySelector(".add").style.display = "none";
 };
 
-// Create
-const create = () => {
-  let id= data.length ? data[data.length -1].id +1 :1;
-  let name = document.querySelector(".name").value;
-  let email = document.querySelector(".email").value;
-// email validation
-  let regEmail=/^[a-zA-Z0-9._]{5,}@[a-zA-Z]{5,}[.]{1}[a-zA-Z]{3}$/;
-  if(regEmail.test(email)){
-    document.querySelector("#message").innerHTML=" ";
+// Handle form submit (create+update)
+const handleSubmit = (event) => {
+  event.preventDefault();
+
+  let id = document.querySelector(".id").value;
+  let name = document.querySelector(".name").value.trim();
+  let email = document.querySelector(".email").value.trim();
+  let phone = document.querySelector(".phone").value.trim();
+
+  let message = document.querySelector("#message");
+
+  //email and phone validation
+  let regEmail = /^[a-zA-Z0-9._]{5,}@[a-zA-Z]{5,}[.]{1}[a-zA-Z]{3}$/;
+  let regPhone = /^(98|97)[0-9]{8}$/;
+
+  if (!regEmail.test(email)) {
+    message.innerHTML = "Invalid Email format. Enter a valid Email address.";
+    return;
   }
-  else{
-    document.querySelector('#message').innerHTML="Email is not Valid";
-    return false;
+  if (!regPhone.test(phone)) {
+    message.innerHTML = "Invalid Phone Number format.";
+    return;
   }
 
-  let newObj = { id, name, email };
-  data.push(newObj);
-  localStorage.setItem('object',JSON.stringify(data));
+  //check duplicate values
+  if (!id) {
+    if (data.some((record) => record.name === name && record.id != id)) {
+      message.innerText = "Name already exists.";
+      return;
+    }
+    if (data.some((record) => record.email === email && record.id != id)) {
+      message.innerText = "Email already exists.";
+      return;
+    }
+    if (data.some((record) => record.phone === phone && record.id != id)) {
+      message.innerText = "Phone already exists.";
+      return;
+    }
+  }
+  message.innerHTML = "";
 
-  document.querySelector(".create-form").style.display = "none";
+  if (id) {
+    //update
+    let index = data.findIndex((record) => record.id == id);
+    data[index] = { id: parseInt(id), name, email, phone };
+  } else {
+    //create
+    let newId = data.length ? data[data.length - 1].id + 1 : 1;
+    data.push({ id: newId, name, email, phone });
+  }
+  localStorage.setItem("object", JSON.stringify(data));
+
+  document.querySelector(".crud-form").reset();
+  document.querySelector(".crud-form").style.display = "none";
   document.querySelector(".add").style.display = "block";
   readAll();
 };
+
 //Edit option
 const edit = (id) => {
-  document.querySelector(".update-form").style.display = "block";
-  document.querySelector(".add").style.display = "none";
-
+  showForm();
   let obj = data.find((record) => record.id === id);
-  document.querySelector(".uname").value = obj.name;
-  document.querySelector(".uemail").value = obj.email;
-  document.querySelector(".uid").value = obj.id;
-};
-//Update
-const update = () => {
-  let id = parseInt(document.querySelector(".uid").value);
-  let name = document.querySelector(".uname").value;
-  let email = document.querySelector(".uemail").value;
-
-  let index = data.findIndex((record) => record.id === id);
-  data[index] = { id, name, email };
-  localStorage.setItem("object",JSON.stringify(data));
-
-  document.querySelector(".update-form").style.display = "none";
-  document.querySelector(".add").style.display = "block";
-
-  readAll();
+  document.querySelector(".id").value = obj.id;
+  document.querySelector(".name").value = obj.name;
+  document.querySelector(".email").value = obj.email;
+  document.querySelector(".phone").value = obj.phone;
 };
 
-//Delete
-const remove =(id)=>{
-    data=data.filter(record=> record.id!== id)
-    localStorage.setItem("object",JSON.stringify(data));
+
+//delete
+const openModal = (id) => {
+  deleteId = id;
+  document.getElementById("deleteModal").style.display = "flex";
+};
+const closeModal = () => {
+  deleteId = null;
+  document.getElementById("deleteModal").style.display = "none";
+};
+const confirmDelete = () => {
+  if (deleteId !== null) {
+    data = data.filter((record) => record.id !== deleteId);
+    localStorage.setItem("object", JSON.stringify(data));
     readAll();
-}
+  }
+  closeModal();
+};
