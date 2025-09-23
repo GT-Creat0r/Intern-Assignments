@@ -3,19 +3,20 @@ let deleteId = null;
 
 const readAll = () => {
   let tableData = document.querySelector(".data-table");
-  let elements = "";
-  data.map((record) => {
-    elements += `<tr>
-        <td data-label="Name">${record.name}</td>
-        <td data-label="Email">${record.email}</td>
-        <td data-label="Phone">${record.phone}</td>
-        <td data-label="Action">
-            <button class="edit" onclick="edit(${record.id})">Edit</button>
-            <button class="delete" onclick="openModal(${record.id})">Delete</button>
-        </td>
-        </tr>`;
+  tableData.innerHTML = "";
+  data.forEach((record) => {
+    let row = document.createElement("tr");
+    row.setAttribute("data-id", record.id);
+    row.innerHTML = `
+      <td data-label="Name">${record.name}</td>
+      <td data-label="Email">${record.email}</td>
+      <td data-label="Phone">${record.phone}</td>
+      <td data-label="Action">
+        <button class="edit" onclick="edit(${record.id})">Edit</button>
+        <button class="delete" onclick="openModal(${record.id})">Delete</button>
+      </td>`;
+    tableData.appendChild(row);
   });
-  tableData.innerHTML = elements;
 };
 // show option
 const showForm = () => {
@@ -65,20 +66,51 @@ const handleSubmit = (event) => {
   message.innerHTML = "";
 
   if (id) {
-    //update
+    // update
     let index = data.findIndex((record) => record.id == id);
     data[index] = { id: parseInt(id), name, email, phone };
+    localStorage.setItem("object", JSON.stringify(data));
+
+    // update row in table
+    let row = document.querySelector(`tr[data-id="${id}"]`);
+    if (row) {
+      row.innerHTML = `
+        <td data-label="Name">${name}</td>
+        <td data-label="Email">${email}</td>
+        <td data-label="Phone">${phone}</td>
+        <td data-label="Action">
+          <button class="edit" onclick="edit(${id})">Edit</button>
+          <button class="delete" onclick="openModal(${id})">Delete</button>
+        </td>`;
+      row.classList.add("new-row"); // animate updated row
+      setTimeout(() => row.classList.remove("new-row"), 500);
+    }
   } else {
-    //create
+    // create
     let newId = data.length ? data[data.length - 1].id + 1 : 1;
-    data.push({ id: newId, name, email, phone });
+    let newRecord = { id: newId, name, email, phone };
+    data.push(newRecord);
+    localStorage.setItem("object", JSON.stringify(data));
+
+    let tableData = document.querySelector(".data-table");
+    let newRow = document.createElement("tr");
+    newRow.setAttribute("data-id", newId);
+    newRow.classList.add("new-row");
+    newRow.innerHTML = `
+      <td data-label="Name">${name}</td>
+      <td data-label="Email">${email}</td>
+      <td data-label="Phone">${phone}</td>
+      <td data-label="Action">
+        <button class="edit" onclick="edit(${newId})">Edit</button>
+        <button class="delete" onclick="openModal(${newId})">Delete</button>
+      </td>`;
+    tableData.appendChild(newRow);
   }
-  localStorage.setItem("object", JSON.stringify(data));
 
   document.querySelector(".crud-form").reset();
   document.querySelector(".crud-form").style.display = "none";
   document.querySelector(".add").style.display = "block";
-  readAll();
+  // readAll();
 };
 
 //Edit option
@@ -90,7 +122,6 @@ const edit = (id) => {
   document.querySelector(".email").value = obj.email;
   document.querySelector(".phone").value = obj.phone;
 };
-
 
 //delete
 const openModal = (id) => {
@@ -105,7 +136,14 @@ const confirmDelete = () => {
   if (deleteId !== null) {
     data = data.filter((record) => record.id !== deleteId);
     localStorage.setItem("object", JSON.stringify(data));
-    readAll();
+
+    let row = document.querySelector(`tr[data-id="${deleteId}"]`);
+    if (row) {
+      row.classList.add("fade-out");
+      row.addEventListener("animationend", () => {
+        row.remove();
+      });
+    }
   }
   closeModal();
 };
