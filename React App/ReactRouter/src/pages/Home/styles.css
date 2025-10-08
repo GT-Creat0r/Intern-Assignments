@@ -1,0 +1,10 @@
+.home-container {
+  text-align: center;
+  margin-top: 10%;
+  font-family: sans-serif;
+}
+
+.home-container h1 {
+  font-size: 2rem;
+  color: #007bff;
+}
