@@ -101,5 +101,8 @@ function stopAutoSlide() {
 container.addEventListener("mouseenter", () => stopAutoSlide());
 container.addEventListener("mouseleave", () => startAutoSlide());
 
-// Start when page loads
+//Start when page loads
 startAutoSlide();
+
+
+
