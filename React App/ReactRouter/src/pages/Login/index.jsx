@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 import "../Login/styles.css";
 import { useState } from "react";
 
-
 const username ="admin";
 const password ="abcdefgh";
 
