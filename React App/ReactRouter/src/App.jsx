@@ -4,8 +4,7 @@
 // import Home from "./pages/Home";
 // import About from "./pages/About";
 // import Contact from "./pages/Contact";
-// import "./App.css";
-
+import "./App.css";
 import { Outlet } from "react-router-dom";
 
 const App = () => {

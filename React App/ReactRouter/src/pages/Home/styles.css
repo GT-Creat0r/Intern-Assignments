@@ -1,4 +1,8 @@
 .home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
   margin-top: 10%;
   font-family: sans-serif;
@@ -7,4 +11,25 @@
 .home-container h1 {
   font-size: 2rem;
   color: #007bff;
+}
+.data-fetched{
+  width:550px;
+  height:350px;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  border:4px solid #007bff;
+}
+
+button{
+  padding:8px;
+  margin :24px 0;
+  background-color: #007bff; 
+  color:white;
+  border: none;
+  border-radius: 8px;
+}
+.link{
+  text-decoration: none;
+  color: white;
 }
