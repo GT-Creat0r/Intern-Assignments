@@ -1,0 +1,22 @@
+.toggle-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  background: #1abc9c;
+  color: white;
+  z-index: 2000;
+  transition: left 0.3s ease-in-out; /* smooth move */
+}
+
+/* When sidebar is open, push the button to the right */
+.toggle-btn.shifted {
+  left: 220px; /* 250px sidebar width + 20px gap */
+}
+
+.toggle-btn:hover {
+  background: #16a085;
+}
