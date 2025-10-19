@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import DocsLayout from "./layouts/DocsLayout/DocsLayout";
 import ButtonPage from "./pages/ButtonPage/ButtonPage";
 import HomePage from "./pages/HomePage/HomePage";
@@ -7,39 +7,35 @@ import TextareaPage from "./pages/TextareaPage/TextareaPage";
 import NavPage from "./pages/NavPage/NavPage";
 import CardPage from "./pages/CardPage/CardPage";
 import TabsPage from "./pages/TabsPage/TabsPage";
+import AlertPage from "./pages/AlertPage/AlertPage";
 
 const navigation = [
-  { id: "home", label: "Home" },
-  { id: "button", label: "Button" },
-  { id: "input", label: "Input" },
-  { id: "textarea", label: "Textarea" },
-  { id: "nav", label: "Nav" },
-  { id: "card", label: "Card" },
-  {id:'tabs',label:'Tabs'}
+  { id: "home", label: "Home", path: "/" },
+  { id: "alert", label: "Alert", path: "/alert" },
+  { id: "button", label: "Button", path: "/button" },
+  { id: "card", label: "Card", path: "/card" },
+  { id: "input", label: "Input", path: "/input" },
+  { id: "nav", label: "Nav", path: "/nav" },
+  { id: "tabs", label: "Tabs", path: "/tabs" },
+  { id: "textarea", label: "Textarea", path: "/textarea" },
 ];
 
-const pages = {
-  home: HomePage,
-  button: ButtonPage,
-  input: InputPage,
-  textarea: TextareaPage,
-  nav: NavPage,
-  card: CardPage,
-  tabs:TabsPage,
-};
-
 const App = () => {
-  const [currentPage, setCurrentPage] = useState("home");
-  const PageComponent = pages[currentPage];
-
   return (
-    <DocsLayout
-      navigation={navigation}
-      currentPage={currentPage}
-      onNavigate={setCurrentPage}
-    >
-      <PageComponent />
-    </DocsLayout>
+    <BrowserRouter>
+      <DocsLayout navigation={navigation}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/button" element={<ButtonPage />} />
+          <Route path="/card" element={<CardPage />} />
+          <Route path="/input" element={<InputPage />} />
+          <Route path="/tabs" element={<TabsPage />} />
+          <Route path="/textarea" element={<TextareaPage />} />
+          <Route path="/nav" element={<NavPage />} />
+          <Route path="/alert" element={<AlertPage />} />
+        </Routes>
+      </DocsLayout>
+    </BrowserRouter>
   );
 };
 

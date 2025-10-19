@@ -35,34 +35,6 @@ const NavPage = () => {
             `}
         />
       </ComponentSection>
-
-      <ComponentSection title="Usage">
-        <div
-          style={{
-            background: "#ffffff",
-            padding: "24px",
-            border: "1px solid #ddd",
-            borderRadius: "8px",
-          }}
-        >
-          <pre>
-            <code>{`
-            import {Nav, NavBrand, NavLink} from './components/Nav.jsx';
-
-            const MyNav = () => {
-              return (
-                <Nav>
-                    <NavBrand href="#">My Website</NavBrand>
-                    <NavLink href="#" active>Home</NavLink>
-                    <NavLink href="#">About</NavLink>
-                    <NavLink href="#">Services</NavLink>
-                    <NavLink href="#">Contact</NavLink>
-                </Nav>
-                );
-            }`}</code>
-          </pre>
-        </div>
-      </ComponentSection>
     </div>
   );
 };

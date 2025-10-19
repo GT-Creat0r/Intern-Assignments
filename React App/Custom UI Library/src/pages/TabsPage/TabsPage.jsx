@@ -99,48 +99,6 @@ const TabsPage = () => {
 </Tabs>`}
         />
       </ComponentSection>
-
-      <ComponentSection title="Usage">
-        <div
-          style={{
-            background: "#ffffff",
-            padding: "24px",
-            borderRadius: "8px",
-            border: "1px solid #ddd",
-          }}
-        >
-          <pre>
-            <code>{`import { Tabs, TabList, Tab, TabPanels, TabPanel } from './components';
-
-function MyComponent() {
-  return (
-    <Tabs defaultValue="home">
-      {({ activeValue, onChange }) => (
-        <>
-          <TabList>
-            <Tab value="home" active={activeValue === 'home'} onClick={onChange}>
-              Home
-            </Tab>
-            <Tab value="about" active={activeValue === 'about'} onClick={onChange}>
-              About
-            </Tab>
-          </TabList>
-          <TabPanels>
-            <TabPanel value="home" active={activeValue === 'home'}>
-              <p>Home content</p>
-            </TabPanel>
-            <TabPanel value="about" active={activeValue === 'about'}>
-              <p>About content</p>
-            </TabPanel>
-          </TabPanels>
-        </>
-      )}
-    </Tabs>
-  );
-}`}</code>
-          </pre>
-        </div>
-      </ComponentSection>
     </div>
   );
 };

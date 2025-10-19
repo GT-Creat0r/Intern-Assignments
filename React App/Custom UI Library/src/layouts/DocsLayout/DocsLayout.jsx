@@ -1,6 +1,8 @@
-import '../DocsLayout/DocsLayout.css'
+import { Link, useLocation } from "react-router-dom";
+import "../DocsLayout/DocsLayout.css";
 
-const DocsLayout = ({ children, navigation, currentPage, onNavigate }) => {
+const DocsLayout = ({ children, navigation }) => {
+  const location = useLocation();
   return (
     <div className="docs-layout">
       <aside className="docs-sidebar">
@@ -9,15 +11,15 @@ const DocsLayout = ({ children, navigation, currentPage, onNavigate }) => {
         </div>
         <nav className="docs-nav">
           {navigation.map((item) => (
-            <button
+            <Link
               key={item.id}
+              to={item.path}
               className={`docs-nav-item ${
-                currentPage === item.id ? "docs-nav-item-active" : ""
+                location.pathname === item.path ? "docs-nav-item-active" : ""
               }`}
-              onClick={() => onNavigate(item.id)}
             >
               {item.label}
-            </button>
+            </Link>
           ))}
         </nav>
       </aside>

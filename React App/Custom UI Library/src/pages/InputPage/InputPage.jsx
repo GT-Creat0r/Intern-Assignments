@@ -1,5 +1,5 @@
 import { useState } from "react";
-import  Input  from "../../components/Input/Input";
+import Input from "../../components/Input/Input";
 import {
   ComponentDemo,
   ComponentSection,
@@ -35,37 +35,6 @@ const InputPage = () => {
                 onChange={(e) => setValue(e.target.value)}
               />`}
         />
-      </ComponentSection>
-
-      <ComponentSection title="Usage">
-        <div
-          style={{
-            background: "#ffffff",
-            padding: "24px",
-            borderRadius: "8px",
-            border: "1px solid #ddd",
-          }}
-        >
-          <pre>
-            <code>
-              {`
-              import {Input} from './components/Input.jsx';
-
-                function MyComponent() {
-                    const [value, setValue] = useState("");
-                        return(
-                            <Input 
-                                label="Username"
-                                type="text"
-                                placeholder="Enter your username"
-                                value={value}
-                                onChange={(e) => setValue(e.target.value)}
-                            />
-                            )
-                        }`}
-            </code>
-          </pre>
-        </div>
       </ComponentSection>
     </div>
   );

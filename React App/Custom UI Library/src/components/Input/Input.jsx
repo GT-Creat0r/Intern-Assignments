@@ -5,6 +5,7 @@ const Input = ({
   id,
   type = "text",
   required = false,
+  ...props
 }) => {
   const inputId = id || "";
   const classNames = ["input", className].filter(Boolean).join(" ");
@@ -22,6 +23,7 @@ const Input = ({
         type={type}
         className={classNames}
         placeholder={placeholder}
+        {...props}
       />
     </div>
   );

@@ -5,6 +5,7 @@ const Textarea = ({
   rows = 4,
   placeholder,
   required = false,
+  ...props
 }) => {
   const textareaId = id || "";
   const classNames = ["textarea", className].filter(Boolean).join(" ");
@@ -22,6 +23,7 @@ const Textarea = ({
         className={classNames}
         rows={rows}
         placeholder={placeholder}
+        {...props}
       />
     </div>
   );

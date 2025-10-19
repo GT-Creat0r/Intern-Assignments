@@ -13,7 +13,7 @@ const TextareaPage = () => {
       <p>Textarea component.</p>
       <ComponentSection title="Basic Textarea">
         <ComponentDemo
-        title ="Textarea with Label"
+          title="Textarea with Label"
           description="Multi-line text input"
           component={
             <div>
@@ -36,36 +36,6 @@ const TextareaPage = () => {
         />
         `}
         />
-      </ComponentSection>
-
-      <ComponentSection title="Usage">
-        <div
-          style={{
-            background: "#ffffff",
-            padding: "24px",
-            borderRadius: "8px",
-            border: "1px solid #ddd",
-          }}
-        >
-          <pre>
-            <code>{`
-            import {Textarea} from './components/Textarea.jsx';     
-
-              function MyComponent() {
-                    const [value, setValue] = useState("");
-                        return(
-                            <Textarea 
-                                label="Bio"
-                                placeholder="Tell us about yourself"
-                                rows={4}
-                                value={value}
-                                onChange={(e) => setValue(e.target.value)}
-                            />
-                            )
-                        }
-            `}</code>
-          </pre>
-        </div>
       </ComponentSection>
     </div>
   );

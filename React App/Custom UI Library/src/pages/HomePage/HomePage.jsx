@@ -39,11 +39,13 @@ const HomePage = () => {
       <section className="home-section">
         <h2>Components</h2>
         <div className="home-components">
+          <div className="home-component-item">Alert</div>
           <div className="home-component-item">Button</div>
-          <div className="home-component-item">Input</div>
-          <div className="home-component-item">Textarea</div>
-          <div className="home-component-item">Nav</div>
           <div className="home-component-item">Card</div>
+          <div className="home-component-item">Input</div>
+          <div className="home-component-item">Nav</div>
+          <div className="home-component-item">Tabs</div>
+          <div className="home-component-item">Textarea</div>
         </div>
       </section>
 

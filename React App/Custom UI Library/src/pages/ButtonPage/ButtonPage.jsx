@@ -28,30 +28,6 @@ const ButtonPage = () => {
             <Button variant="success">Success</Button>`}
         />
       </ComponentSection>
-
-      <ComponentSection title="Usage">
-        <div
-          style={{
-            background: "#ffffff",
-            padding: "24px",
-            borderRadius: "8px",
-            border: "1px solid #ddd",
-          }}
-        >
-          <pre>
-            <code>{`
-                import {Button} from './components/Button.jsx';
-                
-                function MyComponent() {
-                return(
-                <Button variant='primary' onClick={()=>console.log("Clicked")}>
-                Click Me
-                </Button>
-                );
-                }`}</code>
-          </pre>
-        </div>
-      </ComponentSection>
     </div>
   );
 };
