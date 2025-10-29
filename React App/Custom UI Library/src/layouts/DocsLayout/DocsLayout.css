@@ -12,6 +12,9 @@
   top: 0;
   height: 100vh;
   position: sticky;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #d1d5db #f9fafb;
 }
 
 .docs-sidebar-header {
