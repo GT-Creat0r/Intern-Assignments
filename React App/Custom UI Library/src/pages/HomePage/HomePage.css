@@ -71,6 +71,23 @@
   font-size: 0.9375rem;
 }
 
+.home-hooks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.home-hook-item {  
+  padding: 16px 24px;
+  background-color: #eff6ff;
+  color: #1dd849;
+  border-radius: 9999px;
+  font-weight: 500;
+  font-size: 0.9375rem;
+}
+
+
+
 .home-usage {
   background-color: #ffffff;
   padding: 24px;

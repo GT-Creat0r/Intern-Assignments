@@ -39,13 +39,27 @@ const HomePage = () => {
       <section className="home-section">
         <h2>Components</h2>
         <div className="home-components">
+          <div className="home-component-item">Accordion</div>
           <div className="home-component-item">Alert</div>
           <div className="home-component-item">Button</div>
           <div className="home-component-item">Card</div>
+          <div className="home-component-item">ImageSlider</div>
           <div className="home-component-item">Input</div>
           <div className="home-component-item">Nav</div>
+          <div className="home-component-item">Slider</div>
           <div className="home-component-item">Tabs</div>
+          <div className="home-component-item">Table</div>
           <div className="home-component-item">Textarea</div>
+        </div>
+      </section>
+
+      <section className="home-section">
+        <h2>Hooks</h2>
+        <div className="home-hooks">
+          <div className="home-hook-item">useLocalStorage</div>
+          <div className="home-hook-item">usePrevious</div>
+          <div className="home-hook-item">useDimension</div>
+          <div className="home-hook-item">useOutsideClick</div>
         </div>
       </section>
 
