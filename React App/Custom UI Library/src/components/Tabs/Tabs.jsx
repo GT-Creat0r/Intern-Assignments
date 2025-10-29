@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { createContext, useContext, useState } from "react";
 import "./Tabs.css";
+
+const TabsContext = createContext();
 
 const Tabs = ({
   children,
@@ -16,16 +18,20 @@ const Tabs = ({
   const handleChange = (newValue) => {
     if (!isControlled) {
       setInternalValue(newValue);
+      onChange?.(newValue);
     }
-    onChange?.(newValue);
   };
 
   return (
-    <div className={`tabs ${className}`} {...props}>
-      {typeof children === "function"
-        ? children({ activeValue, onChange: handleChange })
-        : children}
-    </div>
+    // <div className={`tabs ${className}`} {...props}>
+    //   {typeof children === "function"
+    //     ? children({ activeValue, onChange: handleChange })
+    //     : children}
+    // </div>
+
+    <TabsContext.Provider value={{ activeValue, handleChange }}>
+      <div className="tabs">{children}</div>
+    </TabsContext.Provider>
   );
 };
 
@@ -40,20 +46,24 @@ const TabList = ({ children, className = "", ...props }) => {
 const Tab = ({
   children,
   value,
-  active = false,
-  onClick,
+  // active = false,
+  // onClick,
   disabled = false,
   className = "",
   ...props
 }) => {
+
+  const {activeValue,handleChange}=useContext(TabsContext);
+  const isActive= activeValue ===value;
+
   return (
     <button
       type="button"
       role="tab"
-      aria-selected={active}
+      aria-selected={isActive}
       disabled={disabled}
-      className={`tab ${active ? "tab-active" : ""} ${className}`}
-      onClick={() => onClick?.(value)}
+      className={`tab ${isActive ? "tab-active" : ""} ${className}`}
+      onClick={() => handleChange(value)}
       {...props}
     >
       {children}
@@ -72,11 +82,12 @@ const TabPanels = ({ children, className = "", ...props }) => {
 const TabPanel = ({
   children,
   value,
-  active = false,
+  // active = false,
   className = "",
   ...props
 }) => {
-  if (!active) return null;
+  const {activeValue} =useContext(TabsContext)
+  if (activeValue !== value) return null;
 
   return (
     <div className={`tab-panel ${className}`} role="tabpanel" {...props}>
